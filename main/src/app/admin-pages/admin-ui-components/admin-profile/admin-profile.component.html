@@ -1,0 +1,26 @@
+<mat-card class="cardWithShadow theme-card" *ngFor="let item of arrResponse">
+    <mat-card-header>
+        <img mat-card-avatar class="example-header-image"  [src]="'http://localhost:3000/' + item.file"  />
+      <mat-card-title class="m-b-0">My Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <mat-card class="b-1 shadow-none">
+        <mat-card-content>
+            <p >{{item.firstName}} {{item.lastName}}</p>
+            <p><span>Email: </span> {{item.email}}</p>
+            <p><span>DOB: </span>{{item.dob | date: 'dd/MM/yyyy'}}</p>
+            <p>
+              <span>Address: </span> {{item.address}}
+            </p>
+            <p>
+              <span>Zip Code: </span> {{item.zipCode}}
+            </p>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+            <button mat-button routerLink="/ui-components/profile/edit-profile">Edit</button>
+        </mat-card-actions> -->
+      </mat-card>
+  
+    </mat-card-content>
+  </mat-card>
+  <!-- [src]="item.file ? 'http://localhost:3000/' + item.file : '../assets/images/profile/user-1.jpg'"  -->

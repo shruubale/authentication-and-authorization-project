@@ -1,0 +1,92 @@
+<div class="container">
+    <form [formGroup]="updateUser" class="center-form">
+      <div class="user-details">
+        <h1>Update Users</h1>
+  
+        <div style="display: flex; flex-wrap: wrap;">
+          <div style="margin: 5px;">
+            <mat-form-field>
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName">
+              <mat-error>firstname is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div style="margin: 5px;">
+            <mat-form-field>
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName">
+              <mat-error>last name is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+  
+  
+        <div style="display: flex; flex-wrap: wrap;">
+          <div style="margin: 5px; ">
+            <mat-form-field>
+              <mat-label>Date Of Birth</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="dob">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="updateUser.get('dob').hasError('required')">date is required</mat-error>
+              <mat-error *ngIf="updateUser.get('dob').hasError('futureDate')">enter valid birthdate. do not put future
+                date</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div style="margin: 5px;">
+            <mat-form-field>
+              <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="test@example.com" formControlName="email">
+              <mat-error *ngIf="updateUser.get('email').hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="updateUser.get('email').hasError('email')">Please enter valid email</mat-error>
+            </mat-form-field>
+          </div>
+  
+        </div>
+  
+        <div style="display: flex; flex-wrap: wrap;">
+  
+  
+          <div style="margin: 5px;">
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address">
+              <mat-error *ngIf="updateUser.get('address').hasError('required')">address is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div style="margin: 5px;">
+            <mat-form-field>
+              <mat-label>Zip Code</mat-label>
+              <input matInput formControlName="zipCode">
+              <mat-error *ngIf="updateUser.get('zipCode').hasError('required')">please enter zipcode</mat-error>
+            </mat-form-field>
+          </div>
+  
+        </div>
+  
+  
+        <div style="display: flex; flex-wrap: wrap;">
+          <div  style="margin: 10px;">
+            <mat-form-field>
+              <mat-label>Select Role</mat-label>
+              <mat-select formControlName="role" >
+                <mat-option  *ngFor="let item of arrResponse" [value]="item.value" >
+                  {{item.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="button">
+          <button mat-flat-button color="accent" (click)="update()" style="margin-right: 10px;">Update</button>
+          <button mat-stroked-button color="accent" (click)="closeDialog()">Cancel</button>
+        </div>
+  
+      </div>
+    </form>
+  </div>

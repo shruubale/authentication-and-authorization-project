@@ -1,0 +1,33 @@
+
+.mat-dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .confirmation-dialog {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .confirmation-dialog-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .confirmation-dialog-message {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .confirmation-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .confirmation-dialog-action-button {
+    margin-left: 10px;
+  }
+  

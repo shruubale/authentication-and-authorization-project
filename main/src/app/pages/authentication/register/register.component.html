@@ -1,0 +1,193 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light-primary "  >
+  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center bg-light-primary" >
+    <div  style="width: 50vw; height: 100%;">
+      <mat-card  style="width: 100%; padding: 0px; margin: 0px;">
+        <mat-card-content >
+          <div class="text-center">
+            <a [routerLink]="['/dashboard']">
+              <img src="./assets/images/logos/dark-logo.svg" class="align-middle m-2" alt="logo" />
+            </a>
+          </div>
+
+          <div class="row m-t-24 custom-row">
+            <div class="col-12 col-sm-6">
+              <button mat-stroked-button class="w-100">
+                <div class="d-flex align-items-center">
+                  <img src="/assets/images/svgs/google-icon.svg" alt="google" width="16" class="m-r-8" />
+                  Sign in with Google
+                </div>
+              </button>
+            </div>
+            <div class="col-12 col-sm-6">
+              <button mat-stroked-button class="w-100 d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <img src="/assets/images/svgs/facebook-icon.svg" alt="facebook" width="40" class="m-r-4" />
+                  Sign in with FB
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="or-border m-t-30">or sign up with</div>
+
+          <form [formGroup]="ResisterForm">
+            <div class="row">
+              <!-- -----FirstName----- -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">First Name</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input matInput formControlName="firstName" />
+                </mat-form-field>
+              </div>
+
+              <!-- -----LastName----- -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Last Name</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input matInput formControlName="lastName" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- --------Email--------- -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Email Adddress</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input matInput type="email" formControlName="email" />
+                </mat-form-field>
+              </div>
+
+              <!-- --------dob--------- -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Date Of Birth</mat-label>
+                <mat-form-field>
+                  <mat-label>Date Of Birth</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="dob">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="ResisterForm.get('dob').hasError('required')">date is required</mat-error>
+                  <mat-error *ngIf="ResisterForm.get('dob').hasError('futureDate')">enter valid birthdate. do not put
+                    future
+                    date</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- -----Address----- -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Address</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input matInput formControlName="address" />
+                </mat-form-field>
+              </div>
+
+              <!-- -----Zip Code----- -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Zip Code</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input matInput formControlName="zipCode" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- ----------role--------------->
+              <!-- <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Role</mat-label>
+                <mat-form-field>
+                  <mat-label>Select Role</mat-label>
+                  <mat-select formControlName="role">
+                    <mat-option *ngFor="let item of arrResponse" [value]="item.value">
+                      {{item.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+
+              <!-- -----------file upload------------>
+              <!-- <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Upload Profile Pic</mat-label>
+                <div class="upload-container">
+                  <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none" accept=".jpg,.png,.gif" />
+                  <button mat-raised-button color="primary" (click)="fileInput.click()">
+                    <mat-icon>attach_file</mat-icon>
+                    <span>Select File</span>
+                  </button>
+                  <img *ngIf="selectedImageData" [src]="selectedImageData" alt="Selected Image" class="selected-image-preview">
+                </div>
+              </div> -->
+              
+              
+              
+            </div>
+
+            <div class="row">
+              <!-- password -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Password</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input matInput type="password" formControlName="password" />
+                </mat-form-field>
+              </div>
+
+              <!-- confirm password -->
+              <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Confirm Password</mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input matInput type="password" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- ----------role--------------->
+              <!-- <div class="col-12 col-sm-6">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Role</mat-label>
+                <mat-form-field>
+                  <mat-label>Select Role</mat-label>
+                  <mat-select formControlName="role">
+                    <mat-option *ngFor="let item of arrResponse" [value]="item.value">
+                      {{item.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+
+              <!-- -----------file upload------------>
+              <div class="col-12 col-sm-6" style="margin-bottom: 20px;">
+                <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Upload Profile Pic</mat-label>
+                <div class="upload-container">
+                  <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none" accept=".jpg,.png,.gif" />
+                  <button mat-raised-button color="primary" (click)="fileInput.click()">
+                    <mat-icon>attach_file</mat-icon>
+                    <span>Select File</span>
+                  </button>
+                  <div>
+                    <img *ngIf="selectedImageData" [src]="selectedImageData" alt="Selected Image" class="selected-image-preview">
+                  </div>
+                  
+                </div>
+              </div>
+              
+              
+              
+            </div>
+
+            <a (click)="resister()" mat-flat-button color="primary" class="w-100">
+              Sign Up
+            </a>
+            <!-- input -->
+          </form>
+          <span class="d-block f-w-500 text-center m-t-24">Already have an Account?
+
+            <a [routerLink]="['/authentication/login']" class="text-decoration-none text-primary f-w-500 f-s-14">
+              Sign In</a>
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

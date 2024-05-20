@@ -1,0 +1,125 @@
+<div>
+  <mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <mat-card-title>Users
+        <div style="display: flex; justify-content: flex-end; cursor: pointer;" (click)="addUser()">
+          <mat-icon style="color: rgb(67, 67, 214);">add</mat-icon> <span>Add User</span>
+        </div>
+      </mat-card-title>
+
+      <div class="table-responsive m-t-16">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="assigned">
+            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+              User
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="d-flex align-items-center">
+                <img [src]="'http://localhost:3000/' + element.file" alt="users" width="50" class="rounded-circle" />
+                <div class="m-l-16">
+                  <h6 class="mat-subtitle-1 f-s-14 f-w-600">
+                    {{ element.firstName }} {{element.lastName}}
+                  </h6>
+                  <span class="mat-body-1 f-s-12">
+                    {{ element.role }}
+                  </span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+              Email
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              {{ element.email }}
+            </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="dob">
+            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+              Date Of Birth
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              {{ element.dob | date}}
+            </td>
+          </ng-container>
+
+
+          <!-- ===== Address======= -->
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+              Address
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="d-flex align-items-center">
+                <div class="m-l-16">
+                  <h6 class="mat-subtitle-1 f-s-14 f-w-600">
+                    {{ element.address }}
+                  </h6>
+                  <span class="mat-body-1 f-s-12">
+                    {{ element.zipCode }}
+                  </span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+              Actions
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <mat-icon style="color: rgb(67, 67, 214);" (click)="openDialog(element)">edit</mat-icon>
+              <mat-icon style="color: rgb(226, 36, 36);" (click)="deleteUser(element._id)">delete</mat-icon>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+              Status
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-body-1">
+              <mat-slide-toggle color="accent" [checked]="element.status" (change)="toggleStatus(element._id)">
+                {{ element.status ? 'Active' : 'Inactive' }}
+              </mat-slide-toggle>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+
+        <div style="display: flex; background-color: transparent;">
+          <mat-icon style="color: rgb(226, 36, 36);" (click)="bulkDelete()">delete</mat-icon><span>Bulk Delete</span>
+        </div>
+
+
+        <mat-paginator [pageSize]="pageSize" aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

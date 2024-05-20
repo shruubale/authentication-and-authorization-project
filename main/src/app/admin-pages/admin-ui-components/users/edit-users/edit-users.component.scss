@@ -1,0 +1,50 @@
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .example-container mat-form-field+mat-form-field {
+    margin-left: 8px;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    width: 100vw;
+  }
+  
+  .container {
+    max-width: 100%;
+    width: 100vw;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  mat-form-field {
+    width: 25vw;
+  }
+  
+  
+  

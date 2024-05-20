@@ -1,0 +1,135 @@
+
+<mat-card class="cardWithShadow">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Add Baner</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="p-24">
+        <div class="row">
+            <form [formGroup]="AddUser" class="center-form">
+
+
+                <div class="container">
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName">
+                        <mat-error>firstname is required</mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName">
+                        <mat-error>last name is required</mat-error>
+                    </mat-form-field>
+
+                </div>
+
+
+                <div class="container">
+                    <mat-form-field>
+                        <mat-label>Date Of Birth</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dob">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="AddUser.get('dob').hasError('required')">date is required</mat-error>
+                        <mat-error *ngIf="AddUser.get('dob').hasError('futureDate')">enter valid birthdate. do not
+                            put future
+                            date</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Enter your email</mat-label>
+                        <input matInput placeholder="test@example.com" formControlName="email">
+                        <mat-error *ngIf="AddUser.get('email').hasError('required')">Email is required</mat-error>
+                        <mat-error *ngIf="AddUser.get('email').hasError('email')">Please enter valid
+                            email</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="container">
+                    <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput formControlName="address">
+                        <mat-error *ngIf="AddUser.get('address').hasError('required')">address is
+                            required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Zip Code</mat-label>
+                        <input matInput formControlName="zipCode">
+                        <mat-error *ngIf="AddUser.get('zipCode').hasError('required')">please enter
+                            zipcode</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="container">
+                    <mat-form-field>
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="AddUser.get('password').hasError('required')">
+                            Password is required
+                        </mat-error>
+                        <mat-error *ngIf="AddUser.get('password').hasError('minlength')">
+                            Password must be at least 6 characters long
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="cpassword">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+
+                        <mat-error *ngIf="AddUser.get('cpassword').hasError('required')">
+                            Confirm Password is required
+                        </mat-error>
+
+                        <mat-error
+                            *ngIf="AddUser.hasError('passwordMismatch') && AddUser.get('cpassword').touched">
+                            Passwords do not match
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="container" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <mat-label>File :</mat-label>
+                    <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none"
+                        accept=".jpg,.png,.gif" />
+                    <button mat-raised-button color="primary" (click)="fileInput.click()">
+                        <mat-icon>attach_file</mat-icon>
+                        <span>Upload Img</span>
+                    </button>
+                    </div>
+
+                    <mat-form-field style="width: 48%;">
+                        <mat-label>Select Role</mat-label>
+                        <mat-select formControlName="role">
+                          <mat-option *ngFor="let item of arrResponse" [value]="item.value">
+                            {{item.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+
+                <div class="button">
+                    <button mat-flat-button color="accent" style="margin-right: 10px;"
+                        (click)="addUser()">Add</button>
+                    <button mat-stroked-button color="accent"
+                        routerLink="/admin/admin-ui-components/users">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,68 @@
+<mat-card class="cardWithShadow">
+    <mat-card-header>
+        <mat-card-title class="m-b-0">Add Baner</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="p-24">
+        <!-- <mat-card-title>Top Projects</mat-card-title> -->
+        <div class="row">
+            <form [formGroup]="AddBannerForm" class="center-form">
+
+
+                <div class="container">
+                    <mat-form-field>
+                        <mat-label>Title</mat-label>
+                        <input matInput formControlName="title">
+                        <mat-error>Title is required</mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                        <mat-error>Description is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="container">
+                    <mat-form-field>
+                        <mat-label>Start Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="startDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error>Start Date is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>End Date</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="endDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error>End Date is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="container">
+                    <mat-label>File :</mat-label>
+                    <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none"
+                        accept=".jpg,.png,.gif" />
+                    <button mat-raised-button color="primary" (click)="fileInput.click()">
+                        <mat-icon>attach_file</mat-icon>
+                        <span>Select File</span>
+                    </button>
+                </div>
+
+                <div class="button" >
+                    <button mat-flat-button color="accent" style="margin-right: 10px;"
+                        (click)="addBanner()">Add</button>
+                    <button mat-stroked-button color="accent" routerLink="/admin/admin-ui-components/banner">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+
+    </mat-card-content>
+</mat-card>

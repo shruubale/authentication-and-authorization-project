@@ -1,0 +1,39 @@
+
+.carousel {
+    margin: auto;
+    width: 60%;
+  }
+  
+  .carousel-caption {
+    background-color: rgba(54, 53, 53, 0.2); 
+    backdrop-filter: blur(8px); 
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .carousel-title{
+    color: white;
+    font-size: 24px; 
+    font-weight: bold; 
+    text-shadow: 4px 4px 9px rgba(0, 0, 0, 0.7); 
+    margin-bottom: 5px; 
+  }
+
+  .carousel-description{
+    color: white;
+    font-size: 12px; 
+    margin-bottom: 5px; 
+  }
+
+  
+  .carousel-item {
+    max-height: 100vh !important;
+    height: 70vh !important;
+   
+  }
+   
+  .carousel-item img {
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 20px;
+  }

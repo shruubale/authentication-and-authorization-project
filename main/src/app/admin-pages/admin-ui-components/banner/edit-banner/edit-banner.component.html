@@ -1,0 +1,59 @@
+<div class="container">
+    <form [formGroup]="EditBannerForm">
+                <h1>Edit Banner</h1>
+            <div>
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title">
+                    <mat-error>Title is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                    <mat-error>Description is required</mat-error>
+                </mat-form-field>
+            </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>Start Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="startDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error>Start Date is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>End Date</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="endDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error>End Date is required</mat-error>
+                       
+                    </mat-form-field>
+                </div>
+            <div style="margin-top: 10px;">
+                <mat-label>File :</mat-label>
+                <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none"
+                    accept=".jpg,.png,.gif" />
+                <button mat-raised-button color="primary" (click)="fileInput.click()">
+                    <mat-icon>attach_file</mat-icon>
+                    <span>Select File</span> 
+                </button>
+                <div>{{selectedFile}}</div>
+            </div>
+            
+
+            <div class="button" style="display: flex; justify-content: space-between;">
+                <button mat-flat-button color="accent" style="margin-right: 10px;" (click)="updateBanner()">Update</button>
+                <button mat-stroked-button color="accent" (click)="closeDialog()">Cancel</button>
+            </div>
+    </form>
+
+</div>
